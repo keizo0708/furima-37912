@@ -22,11 +22,11 @@
 | --------------------- | ---------- | ------------------------------ |
 | name                  | string     | null: false                    |
 | content               | text       | null: false                    |
-| category              | string     | null: false                    |
-| condition             | string     | null: false                    |
-| delivery_charge       | string     | null: false                    |
-| shipping_area         | string     | null: false                    |
-| days_to_ship          | integer    | null: false                    |
+| category_id           | integer    | null: false                    |
+| condition_id          | integer    | null: false                    |
+| charge_id             | integer    | null: false                    |
+| county_id             | integer    | null: false                    |
+| day_id                | integer    | null: false                    |
 | price                 | integer    | null: false                    |
 | user                  | references | null: false, foreign_key: true |
 
@@ -40,7 +40,6 @@
 | ------- | ---------- | ------------------------------ |
 | user    | references | null: false, foreign_key: true |
 | item    | references | null: false, foreign_key: true |
-| address | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -51,12 +50,12 @@
 
 | Column       | Type       | Options                        |
 | -------------| ---------- | ------------------------------ |
-| postal_code  | integer    | null: false                    |
-| county       | text       | null: false                    |
+| postal_code  | string     | null: false                    |
+| county_id    | integer    | null: false                    |
 | city         | string     | null: false                    |
 | address      | string     | null: false                    |
 | building     | string     |                                |
-| tell         | integer    | null: false                    |
+| tell         | string     | null: false                    |
 | order        | references | null: false, foreign_key: true |
 
 ### Association
