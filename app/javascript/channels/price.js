@@ -5,7 +5,7 @@ window.addEventListener('load', () => {
 
   price.addEventListener('input', () => {
     const input = price.value;
-    const price_tax = parseInt(input * 0.1, 10);
+    const price_tax = Math.floor(input * 0.1);
     tax.innerHTML = price_tax;
     profit.innerHTML = input - price_tax;
   });

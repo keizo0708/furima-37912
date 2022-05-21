@@ -23,27 +23,27 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Content can't be blank")
       end
       it "category_idが空では登録できない" do
-        @item.category_id = ''
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it "condition_idが空では登録できない" do
-        @item.condition_id = ''
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
       it "charge_idが空では登録できない" do
-        @item.charge_id = ''
+        @item.charge_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Charge can't be blank")
       end
       it "county_idが空では登録できない" do
-        @item.county_id = ''
+        @item.county_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("County can't be blank")
       end
       it "day_idが空では登録できない" do
-        @item.day_id = ''
+        @item.day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Day can't be blank")
       end
@@ -76,6 +76,11 @@ RSpec.describe Item, type: :model do
         @item.price = "あああ"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it 'userが存在しなければ登録できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end
