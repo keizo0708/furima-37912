@@ -1,4 +1,4 @@
 FactoryBot.define do
-  factory :charge do
+  factory :order do
   end
 end
