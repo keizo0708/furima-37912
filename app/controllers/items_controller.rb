@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
   def show
   end
 
-  def edit 
+  def edit
   end
 
   def destroy
@@ -45,15 +45,11 @@ class ItemsController < ApplicationController
   private
 
   def move_to_index
-    unless user_signed_in?
-      redirect_to root_path
-    end
+    redirect_to root_path unless user_signed_in?
   end
 
   def move_to_index_from_edit
-    if @item.user.id != current_user.id
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.user.id != current_user.id
   end
 
   def params_item
