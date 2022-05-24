@@ -45,6 +45,11 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Address can't be blank")
       end
+      it 'tellが空では購入できないこと' do
+        @order_address.tell = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Tell can't be blank")
+      end
       it 'tellが9桁以下では購入できないこと' do
         @order_address.tell = '123456789'
         @order_address.valid?
