@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe OrderAddress, type: :model do
   describe '注文情報の保存' do
     before do
-      @order_address = FactoryBot.build(:order_address)
+      user = FactoryBot.create(:user)
+      item = FactoryBot.create(:item)
+      @order_address = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id)
+      sleep 0.1
     end
 
     context '内容に問題ない場合' do
@@ -42,13 +45,18 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Address can't be blank")
       end
-      it 'tellが空だと保存できないこと' do
-        @order_address.tell = ''
+      it 'tellが9桁以下では購入できないこと' do
+        @order_address.tell = '123456789'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Tell can't be blank")
+        expect(@order_address.errors.full_messages).to include("Tell is invalid.")
       end
-      it 'tellが10桁もしくは11桁の数字でないと保存できないこと' do
-        @order_address.tell = '1111-11111'
+      it 'tellが12桁以上では購入できないこと' do
+        @order_address.tell = '123456789012'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Tell is invalid.')
+      end
+      it 'tellに半角数字以外が含まれている場合は購入できない' do
+        @order_address.tell = '111111-111'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Tell is invalid.')
       end
