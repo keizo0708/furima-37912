@@ -33,6 +33,19 @@
   object-fit: contain;
 }
 
+.other-images {
+  display: flex;
+  flex-direction: column;
+}
+
+.other-image img {
+  height: 50vh;
+  width: 60vw;
+  min-height: 500px;
+  background-color: rgb(205, 202, 202);
+  object-fit: contain;
+}
+
 .item-price-box {
   margin: 25px 0px;
   display: flex;
