@@ -12,7 +12,7 @@ class Item < ApplicationRecord
 
   validates :name, presence: true
   validates :content, presence: true
-  validates :images, presence: true
+  validates :images, length: { minimum: 1, maximum: 5, message: "は1枚以上3枚以下にしてください" }
 
   PRICE_REGEX = /\A\d+\Z/.freeze
   validates_format_of :price, with: PRICE_REGEX, message: 'is invalid. Input half-width characters'
