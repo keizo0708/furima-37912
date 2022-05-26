@@ -8,9 +8,11 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one :order
-  has_one_attached :image
+  has_many_attached :images
 
-  validates :name, :content, :image, presence: true
+  validates :name, presence: true
+  validates :content, presence: true
+  validates :images, presence: true
 
   PRICE_REGEX = /\A\d+\Z/.freeze
   validates_format_of :price, with: PRICE_REGEX, message: 'is invalid. Input half-width characters'
