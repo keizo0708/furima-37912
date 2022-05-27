@@ -12,15 +12,15 @@ class User < ApplicationRecord
   validates :birthday, presence: true
 
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/.freeze
-  validates_format_of :password, with: PASSWORD_REGEX, message: 'is invalid. Include both letters and numbers'
+  validates_format_of :password, with: PASSWORD_REGEX, message: 'は英数字混合で入力してください'
 
   NAME_REGEX = /\A[ぁ-んァ-ヶー-龥々ー]+\z/.freeze
-  validates_format_of :last_name, with: NAME_REGEX, message: 'is invalid. Input full-width characters'
-  validates_format_of :first_name, with: NAME_REGEX, message: 'is invalid. Input full-width characters'
+  validates_format_of :last_name, with: NAME_REGEX, message: 'は全角で入力してください'
+  validates_format_of :first_name, with: NAME_REGEX, message: 'は全角で入力してください'
 
   KANA_REGEX = /\A[ァ-ヶー]+\z/.freeze
-  validates_format_of :last_name_kana, with: KANA_REGEX, message: 'is invalid. Input full-width katakana characters'
-  validates_format_of :first_name_kana, with: KANA_REGEX, message: 'is invalid. Input full-width katakana characters'
+  validates_format_of :last_name_kana, with: KANA_REGEX, message: 'は全角カナで入力してください'
+  validates_format_of :first_name_kana, with: KANA_REGEX, message: 'は全角カナで入力してください'
 
   has_many :items
   has_many :orders
